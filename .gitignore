@@ -1,0 +1,14 @@
+*.slo
+*.lo
+*.o
+*.so
+*.dylib
+*.lai
+*.la
+*.a
+*.swp
+src/*.o
+main
+Main
+tags
+build
