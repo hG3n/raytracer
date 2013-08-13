@@ -7,6 +7,7 @@
   #include <windows.h>
 #else
   #include <sys/time.h>
+  #include <unistd.h>
 #endif
 
 #ifdef __APPLE__
