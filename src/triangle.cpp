@@ -1,5 +1,4 @@
 #include <cmath>
-
 #include <triangle.hpp>
 
 #define epsilon 0.000001f
@@ -42,7 +41,6 @@ triangle::~triangle()
 /*virtual*/ bool triangle::intersect(ray const& r, double& t, HitPoint& hp) const {
   return false;
 }
-
 
 void triangle::print_on(std::ostream& out) const {
     shape::print_on(out);

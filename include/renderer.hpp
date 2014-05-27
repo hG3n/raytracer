@@ -30,6 +30,7 @@ class Renderer {
     Scene const& scene() const;
 
     void set_image(std::string const&);
+    Color const shade(Hitpoint const& ) const;
 
     void render();
 

@@ -23,7 +23,7 @@
 int main(int argc, char* argv[])
 {
   SDFloader sdf;
-  sdf.read("test.sdf");
+  sdf.read("scene.sdf");
 
   // set resolution and checkersize
   const std::size_t width  = 400;
