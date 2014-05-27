@@ -1,4 +1,4 @@
-#include <cmath>
+////#include <cmath>
 
 #include <renderer.hpp>
 #include <sdf_loader.hpp>
@@ -37,7 +37,8 @@ void Renderer::render() {
     for (std::size_t x = 0; x < window_.width(); ++x) {
       Pixel p(x, y);
 
-      ray r = camera.compute_eye_ray(window_.width(), window_.height(), x , y);
+      //ray r = camera.compute_eye_ray(window_.width(), window_.height(), x , y);
+      ray r = ray(math3d::point(float(x)/float(window_.width()),float(y)/float(window_.height()),0), math3d::vector(0,0,-1));
 
       hitpoint = trace_ray(r);
 
@@ -69,11 +70,18 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   Material material;
 
   double t_min = 5000000;
-  double t;
+  double t = t_min;
   bool   hit = false;
 
   // compute color for pixel
-  for(auto i : scene_.shapes) {
+#if 0 // nur zum debuggen
+  scene_.shapes.clear();
+  Material m;
+  sphere s(point(0,0,0), 1.0,"horst", &m);
+  scene_.shapes.push_back(&s);
+#endif
+
+  for(shape* i : scene_.shapes) {
 
     trans_inv_matrix_ = i->inv_matrix();
     trans_inv_matrix_.transpose();
@@ -84,7 +92,8 @@ HitPoint const Renderer::trace_ray(ray const& r) {
     inv_ray.o   = i->inv_matrix() * r.o;
     inv_ray.dir = i->inv_matrix() * r.dir;
 
-    if( i->intersect(inv_ray, t, closest) ) {
+    hit = i->intersect(inv_ray, t, closest);
+    if (hit) {
       if(t < t_min) {
         t_min = t;
         hit = true;
@@ -92,20 +101,15 @@ HitPoint const Renderer::trace_ray(ray const& r) {
         normale = normalize(trans_inv_matrix_ * closest.norm);
         view = closest.view;
         material = closest.material;
+
+        closest.pos = hp_pos;
+        closest.norm = normale;
+        closest.view = view;
+        closest.material = material;
+        closest.t = t_min;
       }
     }
-
-    if ( !hit ) //no obj has been found
-      return HitPoint();
-    else
-    {
-      closest.pos = hp_pos;
-      closest.norm = normale;
-      closest.view = view;
-      closest.material = material;
-      closest.t = t_min;
-      return closest;
-    }
   }
+  return closest;
 }
 

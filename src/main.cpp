@@ -13,6 +13,7 @@
 #include <point.hpp>
 
 #include "renderer.hpp"
+#include "sdf_loader.hpp"
 #ifdef __APPLE__
   #include <GLUT/glut.h>
 #else
@@ -21,9 +22,12 @@
 
 int main(int argc, char* argv[])
 {
+  SDFloader sdf;
+  sdf.read("test.sdf");
+
   // set resolution and checkersize
-  const std::size_t width = 800;
-  const std::size_t height = 600;
+  const std::size_t width  = 400;
+  const std::size_t height = 400;
 
   // create output window
   glutwindow::init(width, height, 100, 100, "Raytracer", argc, argv);
@@ -40,7 +44,7 @@ int main(int argc, char* argv[])
   // wait on thread
   thr.join();
 
-  example_math3d();
+  //example_math3d();
 
   return 0;
 }

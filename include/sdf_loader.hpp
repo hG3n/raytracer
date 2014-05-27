@@ -19,9 +19,7 @@ class SDFloader
     private:
         void add_material(std::istringstream&);
         void add_shape(std::istringstream&);
-        void add_light(std::istringstream&);
         void add_camera(std::istringstream&);
-        void apply_transformation(std::istringstream&);
 
     private:
         Scene scene_;

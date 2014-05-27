@@ -8,7 +8,7 @@ using namespace math3d;
 
 shape::shape():
   name_("default"),
-  material_(),
+  material_(nullptr),
   inv_matrix_(matrix::identity())
 {}
 
@@ -53,11 +53,6 @@ void shape::print_on(std::ostream& out) const {
     out << "Name: " << name_ << "Material: " << *material_;
 }
 
-std::ostream& operator<<(std::ostream& output, shape const& s) {
-    s.print_on(output);
-    return output;
-}
-
 void shape::translate(double x, double y, double z) {
     matrix temp(make_translation(x, y, z));
     temp.invert();
@@ -89,6 +84,13 @@ void shape::rotate_z(double angle) {
     matrix temp(make_rotation_z(ang));
     temp.invert();
     inv_matrix_ *= temp;
+}
+
+
+// --- operators --- //
+std::ostream& operator<<(std::ostream& output, shape const& s) {
+    s.print_on(output);
+    return output;
 }
 
 

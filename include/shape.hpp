@@ -40,8 +40,9 @@ class shape{
   protected:
 
   std::string name_;
-  Material* material_;
-  matrix inv_matrix_;
+  Material*   material_;
+  //Material    material_;
+  matrix      inv_matrix_;
 
 };
 
