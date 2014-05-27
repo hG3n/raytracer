@@ -9,16 +9,20 @@ class Color {
 public : // enums, typedefs
 
   typedef float value_t;
- 
+
   Color();
   Color(value_t r, value_t g, value_t b); 
+  Color(Color const&);
+  ~Color();
 
-  void            print     (std::ostream& os) const;
+  void print (std::ostream& os) const;
 
-  value_t&        operator[](unsigned component);
+  value_t& operator[](unsigned component);
   const value_t&  operator[](unsigned component) const;
 
-  void            operator+=(const Color&);
+  void operator+=(const Color&);
+  void operator=(const Color&);
+  bool operator==(const Color&);
 
 private:
   value_t data_[3]; // rgb

@@ -8,7 +8,7 @@ prefix =.
 
 include $(prefix)/defines.mk
 
-CXX = g++ -std=c++0x
+CXX = g++-4.9 -std=c++0x -fdiagnostics-color=always
 
 CXXINCLUDE	+=-I$(prefix)/include -I/opt/local/include
 ifeq ($(UNAME), Darwin)
@@ -29,6 +29,16 @@ HEADER =\
 	include/vector.hpp \
 	include/point.hpp \
 	include/matrix.hpp \
+	include/shape.hpp\
+	include/box.hpp\
+	include/sphere.hpp\
+	include/triangle.hpp\
+	include/material.hpp\
+	include/scene.hpp\
+	include/camera.hpp\
+	include/sdf_loader.hpp\
+	include/hitpoint.hpp\
+	include/renderer.hpp\
         $(NULL)
 
 SOURCE =\
@@ -39,6 +49,15 @@ SOURCE =\
 	src/point.cpp \
 	src/vector.cpp \
 	src/matrix.cpp \
+	src/shape.cpp\
+	src/box.cpp\
+	src/sphere.cpp\
+	src/triangle.cpp\
+	src/material.cpp\
+	src/scene.cpp\
+	src/camera.cpp\
+	src/sdf_loader.cpp\
+	src/renderer.cpp\
 	src/main.cpp \
 	$(NULL)
 
