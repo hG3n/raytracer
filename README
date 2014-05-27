@@ -1,5 +1,2 @@
+Final Project of Programming Languages Class.
 
-Benutzt C++11 Sprachfeatures (<thread> und bind aus <functional>)
-
-Linux:
-  make
