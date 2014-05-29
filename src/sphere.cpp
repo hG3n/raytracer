@@ -34,6 +34,7 @@ sphere::~sphere()
 // --------------- //
 
 /*virtual*/ bool sphere::intersect(ray const& r, double& tmin, HitPoint& hp) const {
+
   double t;
   vector temp = r.o - center_;
   double a = dot(r.dir, r.dir);

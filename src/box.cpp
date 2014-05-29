@@ -13,7 +13,7 @@ bool is_inbetween(double num, double min, double max) {
 
 box::box():
   shape("box"),
-  min_(),
+  min_(point()),
   max_(1,1,1)
 {}
 

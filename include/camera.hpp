@@ -12,6 +12,7 @@ using namespace math3d;
 class Camera
 {
   public:
+
     Camera(std::string const& name = "camera", point const& pos = point(), double alpha = 45.0, point const& lookat = point(0.0,0.0,-1.0), vector const& up = vector(0.0,1.0,0.0));
     Camera(Camera const&);
     ~Camera();

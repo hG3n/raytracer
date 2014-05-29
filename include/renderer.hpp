@@ -29,8 +29,8 @@ class Renderer {
 
     Scene const& scene() const;
 
+    void set_scene(Scene const&);
     void set_image(std::string const&);
-    Color const shade(Hitpoint const& ) const;
 
     void render();
 
@@ -42,6 +42,7 @@ class Renderer {
     Scene scene_;
     glutwindow& window_;
     ppmwriter image_;
+    Color ambientlight_;
 };
 
 #endif

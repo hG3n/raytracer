@@ -27,6 +27,13 @@ Scene const& Renderer::scene() const {
   return scene_;
 }
 
+void Renderer::set_scene(Scene const& scene) {
+  scene_ = scene;
+  ambientlight_[0] = 0.0;
+  ambientlight_[1] = 0.0;
+  ambientlight_[2] = 0.0;
+}
+
 void Renderer::set_image(std::string const& file) {
   std::string name = "./" + file + ".ppm";
   image_ = ppmwriter(window_.width(), window_.height(), name);
@@ -40,13 +47,13 @@ void Renderer::render() {
     for (std::size_t x = 0; x < window_.width(); ++x) {
       Pixel p(x, y);
 
-      //ray r = camera.compute_eye_ray(window_.width(), window_.height(), x , y);
-      ray r = ray(math3d::point(float(x)/float(window_.width()),float(y)/float(window_.height()),0), math3d::vector(0,0,-1));
+      ray r = camera.compute_eye_ray(window_.width(), window_.height(), x , y);
+      //ray r = ray(math3d::point(float(x)/float(window_.width()),float(y)/float(window_.height()),0), math3d::vector(0,0,-1));
 
       hitpoint = trace_ray(r);
 
       if(hitpoint != HitPoint())
-        p.color = Color(100,0,0);
+        p.color = Color(200,0,0);
       else
         p.color = Color(0,0,0);
 
@@ -76,8 +83,7 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   double t = t_min;
   bool   hit = false;
 
-  // compute color for pixel
-#if 1 //for debugging purposes
+#if 0  //for debugging purposes
   scene_.shapes.clear();
   Material m;
   sphere s(point(0,0,0), 1.0, "horst", &m);
@@ -91,8 +97,7 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   scene_.shapes.push_back(&b);
 #endif
 
-  std::cout << scene_.shapes.size() << std::endl;
-
+  // compute color for pixel
   for(auto i : scene_.shapes) {
 
     trans_inv_matrix_ = i->inv_matrix();
@@ -124,34 +129,5 @@ HitPoint const Renderer::trace_ray(ray const& r) {
     }
   }
   return closest;
-}
-
-Color const Renderer::shade(HitPoint const& hp) const {
-    vector reflect;
-
-    vector neg_view(-hp.view); //negative blickrichtung
-    Color phong = ambientlight_ * hp.material.ka; //phong wird auf ambiente objektbeleuchtung initialisiert
-
-    for(auto it : scene_.lights)
-    {
-        vector to_light = normalize(it.pos - hp.pos); // lichtvektor
-        double n_dot_to_light = dot(hp.norm , to_light); // normal dot to_light
-        if(n_dot_to_light > 0.0)
-        {
-            bool in_shadow = false;
-            ray shadowray(hp.pos , to_light); //strahl zur schattenberechnung
-            double d = distance(hp.pos, it.pos);
-            in_shadow = try_intersect_all(shadowray, d); //liegt ein objekt zwischen hitpoint und lichtquelle???
-            if(!in_shadow) //wenn nicht dann errechne beleuchtungsshading
-            {
-                reflect = normalize((2.0 * n_dot_to_light * hp.norm) - to_light); // reflektionsvektor
-                double reflect_dot_view = dot(reflect , neg_view);
-
-                phong += it.ld * ( hp.material.kd * n_dot_to_light + hp.material.ks * std::pow(reflect_dot_view, hp.material.m));
-            }
-        }
-    }
-    //phong += reflection(hp);
-    return phong;
 }
 

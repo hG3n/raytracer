@@ -32,16 +32,12 @@
 	"buffers":
 	[
 	],
-	"build_system": "Packages/C++/C++.sublime-build",
+	"build_system": "Raytracer",
 	"command_palette":
 	{
-		"height": 227.0,
+		"height": 392.0,
 		"selected_items":
 		[
-			[
-				":w",
-				":w - Save"
-			],
 			[
 				":x",
 				"Set Syntax: XSL"
@@ -57,6 +53,10 @@
 			[
 				"pack",
 				"Package Control: Install Package"
+			],
+			[
+				":w",
+				":w - Save"
 			],
 			[
 				":W",

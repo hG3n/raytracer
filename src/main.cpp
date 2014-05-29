@@ -25,6 +25,8 @@ int main(int argc, char* argv[])
   SDFloader sdf;
   sdf.read("scene.sdf");
 
+  std::cout << sdf.scene() << std::endl;
+
   // set resolution and checkersize
   const std::size_t width  = 400;
   const std::size_t height = 400;
@@ -33,8 +35,10 @@ int main(int argc, char* argv[])
   glutwindow::init(width, height, 100, 100, "Raytracer", argc, argv);
 
   // create a ray tracing Renderer
-  Renderer app /* (scene) */ ;
+  Renderer app /* (scene) */;
+  app.set_scene(sdf.scene());
 
+  std::cout << app.scene() << std::endl;
   // start computation in thread
   std::thread thr(std::bind(&Renderer::render, &app));
 
