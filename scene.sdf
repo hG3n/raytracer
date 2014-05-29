@@ -1,5 +1,12 @@
-define material orange 100 100 100 100 100 100 100 100 100 100
-define shape sphere horst 5.0 .0 -20.0 1.0 orange
-define shape sphere horst -5.0 .0 -20.0 1.0 orange
-define shape box peter -1.0 -1.0 -20 1.0 1.0 -21.0 orange
-define camera camera 45.0 0.0 0.0 0.0 0.0 0.0 -1.0 0.0 1.0 0.0
+define material red    1.0 0.0 0.0  1.0 0.0 0.0  1.0 0.0 0.0  1.0
+define material green  0.0 1.0 0.0  0.0 1.0 0.0  0.0 1.0 0.0  1.0
+define material blue   0.0 0.0 1.0  0.0 0.0 1.0  0.0 0.0 1.0  1.0
+
+define shape sphere  sphere_r   5.0   0.0  -20.0  1.0  red
+define shape sphere  sphere_l  -5.0   0.0  -20.0  1.0  red
+define shape sphere  sphere_u   0.0   5.0  -20.0  1.0  blue
+define shape sphere  sphere_b   0.0  -5.0  -20.0  1.0  blue
+
+define shape box  box_m  -1.0 -1.0 -20.0  1.0 1.0 -21.0  green
+
+define camera camera  45.0  0.0 0.0 0.0  0.0 0.0 -1.0  0.0 1.0 0.0

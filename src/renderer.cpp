@@ -7,7 +7,6 @@
 #include <shape.hpp>
 #include <sphere.hpp>
 #include <box.hpp>
-#include <triangle.hpp>
 #include <material.hpp>
 
 Renderer::Renderer():
@@ -53,35 +52,32 @@ void Renderer::render() {
       hitpoint = trace_ray(r);
 
       if(hitpoint != HitPoint())
-        p.color = Color(200,0,0);
+        p.color = shade(hitpoint);
       else
         p.color = Color(0,0,0);
 
-      // write pixel to output window
-      window_.write(p);
-      // write pixel to image writer
-      image_.write(p);
+      window_.write(p);   // write pixel to output window
+      image_.write(p);    // write pixel to image writer
     }
   }
-  // save final image
-  image_.save();
+  image_.save(); //save final image
 }
 
 HitPoint const Renderer::trace_ray(ray const& r) {
 
-  ray     inv_ray;
-  matrix  trans_inv_matrix_;
-  matrix  matrix_;
+  ray            inv_ray;
+  math3d::matrix trans_inv_matrix_;
+  math3d::matrix matrix_;
 
-  HitPoint closest;
-  point    hp_pos;
-  vector   normale;
-  vector   view;
-  Material material;
+  HitPoint       closest;
+  math3d::point  hp_pos;
+  math3d::vector normale;
+  math3d::vector view;
+  Material       material;
 
   double t_min = 5000000;
-  double t = t_min;
-  bool   hit = false;
+  double t     = t_min;
+  bool   hit   = false;
 
 #if 0  //for debugging purposes
   scene_.shapes.clear();
@@ -129,5 +125,10 @@ HitPoint const Renderer::trace_ray(ray const& r) {
     }
   }
   return closest;
+}
+
+Color const Renderer::shade(HitPoint const& hp) const {
+  Color phong = ambientlight_ * hp.material.ka;
+  return hp.material.ka;
 }
 
