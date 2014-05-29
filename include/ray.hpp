@@ -5,27 +5,25 @@
 #include <point.hpp>
 #include <vector.hpp>
 
-using namespace math3d;
-
 struct ray {
     ray():
         o(),
         dir()
     {}
 
-    ray( point const& p , vector const& v):
+    ray( math3d::point const& p , math3d::vector const& v):
         o(p),
         dir(v)
     {}
 
     ray(ray const& r):
-        o(point(r.o)),
-        dir(vector(r.dir))
+        o(math3d::point(r.o)),
+        dir(math3d::vector(r.dir))
     {}
 
     ~ray(){}
-    point o;
-    vector dir;
+    math3d::point o;
+    math3d::vector dir;
  // enums, typedefs
 };
 

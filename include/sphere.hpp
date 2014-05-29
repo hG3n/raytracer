@@ -5,13 +5,11 @@
 #include <point.hpp>
 #include <ray.hpp>
 
-using namespace math3d;
-
 class sphere: public shape{
   public:
 
   sphere();
-  sphere(point const&, double, std::string const&, Material*);
+  sphere(math3d::point const&, double, std::string const&, Material*);
   sphere(sphere const&);
   ~sphere();
 
@@ -23,7 +21,7 @@ class sphere: public shape{
 
   private:
 
-  point center_;
+  math3d::point center_;
   double radius_;
 };
 

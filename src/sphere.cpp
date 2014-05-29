@@ -10,11 +10,11 @@ using namespace math3d;
 
 sphere::sphere():
   shape("sphere"),
-  center_(point()),
+  center_(math3d::point()),
   radius_(1.0)
 {}
 
-sphere::sphere(point const& center, double radius, std::string const& name, Material* material):
+sphere::sphere(math3d::point const& center, double radius, std::string const& name, Material* material):
   shape(name, material),
   center_(center),
   radius_(radius)

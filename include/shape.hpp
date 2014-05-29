@@ -9,9 +9,6 @@ class Material;
 class ray;
 class HitPoint;
 
-using namespace math3d;
-
-
 class shape{
   public:
 
@@ -24,9 +21,9 @@ class shape{
   virtual bool intersect(ray const&, double&, HitPoint&) const = 0;
   virtual void print_on(std::ostream&) const;
 
-  std::string const& name() const;
-  Material*   material() const;
-  matrix      const& inv_matrix() const;
+  std::string   const& name() const;
+  Material*      material() const;
+  math3d::matrix const& inv_matrix() const;
 
   virtual std::string const type() const = 0;
   virtual void get_details(std::ostream&) const = 0;
@@ -39,10 +36,10 @@ class shape{
 
   protected:
 
-  std::string name_;
-  Material*   material_;
-  //Material    material_;
-  matrix      inv_matrix_;
+  std::string    name_;
+  Material*      material_;
+  //Material       material_;
+  math3d::matrix inv_matrix_;
 
 };
 

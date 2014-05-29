@@ -6,14 +6,12 @@
 
 #include <iostream>
 
-using namespace math3d;
-
 class box: public shape{
 
   public:
 
   box();
-  box(point const&, point const&, std::string const&, Material*);
+  box(math3d::point const&, math3d::point const&, std::string const&, Material*);
   box(box const&);
   ~box();
 
@@ -25,16 +23,16 @@ class box: public shape{
 
   private:
 
-  vector const get_normal(int const) const;
+  math3d::vector const get_normal(int const) const;
 
   private:
 
-  point min_;
-  point max_;
+  math3d::point min_;
+  math3d::point max_;
 
 };
 
-void ensure_min_max(point&, point&);
+void ensure_min_max(math3d::point&, math3d::point&);
 
 #endif
 

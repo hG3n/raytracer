@@ -54,34 +54,34 @@ void shape::print_on(std::ostream& out) const {
 }
 
 void shape::translate(double x, double y, double z) {
-  matrix temp(make_translation(x, y, z));
+  math3d::matrix temp(make_translation(x, y, z));
   temp.invert();
   inv_matrix_ *= temp;
 }
 
 void shape::scale(double x, double y, double z) {
-  matrix temp(make_scale(x, y, z));
+  math3d::matrix temp(make_scale(x, y, z));
   temp.invert();
   inv_matrix_ *= temp;
 }
 
 void shape::rotate_x(double angle) {
   double ang = angle * M_PI / 180;
-  matrix temp(make_rotation_x(ang));
+  math3d::matrix temp(make_rotation_x(ang));
   temp.invert();
   inv_matrix_ *= temp;
 }
 
 void shape::rotate_y(double angle) {
   double ang = angle * M_PI / 180;
-  matrix temp(make_rotation_y(ang));
+  math3d::matrix temp(make_rotation_y(ang));
   temp.invert();
   inv_matrix_ *= temp;
 }
 
 void shape::rotate_z(double angle) {
   double ang = angle * M_PI / 180;
-  matrix temp(make_rotation_z(ang));
+  math3d::matrix temp(make_rotation_z(ang));
   temp.invert();
   inv_matrix_ *= temp;
 }

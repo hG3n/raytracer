@@ -4,8 +4,6 @@
 #include <shape.hpp>
 #include <point.hpp>
 
-using namespace math3d;
-
 class cylinder: public shape{
   public:
     cylinder();

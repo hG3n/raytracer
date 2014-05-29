@@ -13,11 +13,11 @@ bool is_inbetween(double num, double min, double max) {
 
 box::box():
   shape("box"),
-  min_(point()),
+  min_(math3d::point()),
   max_(1,1,1)
 {}
 
-box::box(point const& min, point const& max, std::string const& name, Material* material):
+box::box(math3d::point const& min, math3d::point const& max, std::string const& name, Material* material):
   shape(name, material),
   min_(min),
   max_(max)
@@ -37,8 +37,8 @@ box::~box()
 // --------------- //
 
 /*virtual*/ bool box::intersect(ray const& r, double& t, HitPoint& hp) const {
-  point min(min_);
-  point max(max_);
+  math3d::point min(min_);
+  math3d::point max(max_);
   ensure_min_max(min, max);
 
   double ox = r.o[0];
@@ -150,20 +150,20 @@ void box::get_details(std::ostream& out) const {
   out << min_[0] << " " << min_[1] << " " << min_[2] << " " << max_[0] << " " << max_[1] << " " << max_[2] << " ";
 }
 
-vector const box::get_normal(int const face_hit) const {
+math3d::vector const box::get_normal(int const face_hit) const {
 
   switch(face_hit) {
-    case 0: return(vector(-1, 0, 0));
-    case 1: return(vector(0, -1, 0));
-    case 2: return(vector(0, 0, -1));
-    case 3: return(vector(1, 0, 0));
-    case 4: return(vector(0, 1, 0));
-    case 5: return(vector(0, 0, 1));
-    default: return(vector());
+    case 0: return(math3d::vector(-1, 0, 0));
+    case 1: return(math3d::vector(0, -1, 0));
+    case 2: return(math3d::vector(0, 0, -1));
+    case 3: return(math3d::vector(1, 0, 0));
+    case 4: return(math3d::vector(0, 1, 0));
+    case 5: return(math3d::vector(0, 0, 1));
+    default: return(math3d::vector());
   }
 }
 
-void ensure_min_max(point& min, point& max)
+void ensure_min_max(math3d::point& min, math3d::point& max)
 {
   if(min[0] > max[0])
     std::swap(min[0],max[0]);
