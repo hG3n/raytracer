@@ -8,6 +8,7 @@
 #include <sphere.hpp>
 #include <box.hpp>
 #include <material.hpp>
+#include <light.hpp>
 
 Renderer::Renderer():
   scene_(),

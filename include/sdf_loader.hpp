@@ -14,12 +14,12 @@ class SDFloader
 
         Scene const& scene() const;
         void read(std::string file);
-        //void animation_description() const;
 
     private:
         void add_material(std::istringstream&);
         void add_shape(std::istringstream&);
         void add_camera(std::istringstream&);
+        void add_light(std::istringstream&);
 
     private:
         Scene scene_;

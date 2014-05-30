@@ -57,6 +57,8 @@ ray const Camera::compute_eye_ray(double width, double height, double x, double 
 }
 
 std::ostream& operator<<(std::ostream& out, Camera const& cam) {
-    out << "Name: " << cam.name() << " Position: " << cam.pos() << " Oeffnungswinkel: " << cam.alpha();
+    out << "Name: " << cam.name()
+        << " Position: " << cam.pos()
+        << " Oeffnungswinkel: " << cam.alpha();
     return out;
 }

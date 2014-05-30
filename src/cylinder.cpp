@@ -11,7 +11,7 @@ cylinder::cylinder():
   height_(1.0)
 {}
 
-cylinder::cylinder(point const& center, double radius, double height, std::string const& name, Material* material):
+cylinder::cylinder(math3d::point const& center, double radius, double height, std::string const& name, Material* material):
   shape(name, material),
   center_(center),
   radius_(radius),

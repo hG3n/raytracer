@@ -1,11 +1,11 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#include <point.hpp>
-#include <ray.hpp>
-
 #include <string>
 #include <iostream>
+
+#include <point.hpp>
+#include <ray.hpp>
 
 class Camera
 {

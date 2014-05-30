@@ -8,23 +8,24 @@
 
 #include <material.hpp>
 #include <shape.hpp>
-//#include <light.hpp>
 #include <camera.hpp>
-// #include <memory>
+#include <light.hpp>
+
+#include <memory>
 
 // shape* <-> std::shared_ptr<shape>
 
-struct Scene
-{
-    Scene();
-    ~Scene();
-    std::map<std::string, Material> materials;
-    std::vector<shape*> shapes;
-    //std::vector<std::shared_ptr<shape>> shapes;
-    std::list<Camera> cameras;
-    //std::list<Light> lights;
+struct Scene {
+  Scene();
+  ~Scene();
+
+  std::map<std::string, Material> materials;
+  std::vector<shape*> shapes;
+  //std::vector<std::shared_ptr<shape>> shapes;
+  std::vector<Camera> cameras;
+  std::vector<Light> lights;
 };
 
-std::ostream& operator<<(std::ostream& output, Scene const& scene);
+std::ostream& operator<<(std::ostream& , Scene const&);
 
 #endif

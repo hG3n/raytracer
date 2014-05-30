@@ -33,9 +33,11 @@ HEADER =\
 	include/box.hpp\
 	include/sphere.hpp\
 	include/triangle.hpp\
+	include/cylinder.hpp\
 	include/material.hpp\
 	include/scene.hpp\
 	include/camera.hpp\
+	include/light.hpp\
 	include/sdf_loader.hpp\
 	include/hitpoint.hpp\
 	include/renderer.hpp\
@@ -53,9 +55,11 @@ SOURCE =\
 	src/box.cpp\
 	src/sphere.cpp\
 	src/triangle.cpp\
+	src/cylinder.cpp\
 	src/material.cpp\
 	src/scene.cpp\
 	src/camera.cpp\
+	src/light.cpp\
 	src/sdf_loader.cpp\
 	src/renderer.cpp\
 	src/main.cpp \

@@ -7,7 +7,7 @@
 class cylinder: public shape{
   public:
     cylinder();
-    cylinder(point const&, double, double, std::string const&, Material*);
+    cylinder(math3d::point const&, double, double, std::string const&, Material*);
     cylinder(cylinder const&);
     ~cylinder();
 
@@ -18,9 +18,9 @@ class cylinder: public shape{
     /*virtual*/ void get_details(std::ostream&) const;
 
   private:
-    point center_;
-    double radius_;
-    double height_;
+    math3d::point center_;
+    double        radius_;
+    double        height_;
 };
 
 #endif

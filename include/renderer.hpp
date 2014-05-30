@@ -18,6 +18,7 @@
 #include <ray.hpp>
 #include <color.hpp>
 #include <hitpoint.hpp>
+#include <light.hpp>
 
 #include <GL/glut.h>
 
