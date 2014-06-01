@@ -15,3 +15,5 @@ define shape triangle tri_r   4.0  4.0 -20.0   6.0  4.0 -20.0   5.0  6.0 -20.0 g
 define shape triangle tri_l  -4.0 -4.0 -20.0  -6.0 -4.0 -20.0  -5.0 -6.0 -20.0 grey
 
 define camera camera  45.0  0.0 0.0 0.0  0.0 0.0 -1.0  0.0 1.0 0.0
+
+define light light_up  0.0 6.0 -20.0  1.0 1.0 1.0  1.0 1.0 1.0

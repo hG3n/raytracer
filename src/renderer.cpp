@@ -96,13 +96,6 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   scene_.shapes.push_back(&b);
 #endif
 
-#if 0
-  scene_.shapes.clear();
-  Material m;
-  cylinder c(math3d::point(0,0,0), 1.0, 1.0, "peter", &m);
-  scene_.shapes.push_back(&c);
-#endif
-
   // compute color for pixel
   for(auto i : scene_.shapes) {
 
