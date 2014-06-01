@@ -16,8 +16,8 @@ struct Material
   Color ks;
   float m;
 
-  bool operator==(Material rhs);
-  bool operator!=(Material rhs);
+  bool operator==(Material const& rhs);
+  bool operator!=(Material const& rhs);
 };
 
 std::ostream& operator<<(std::ostream& output, Material const& material);

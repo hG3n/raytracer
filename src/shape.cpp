@@ -50,7 +50,7 @@ matrix const& shape::inv_matrix() const {
 }
 
 void shape::print_on(std::ostream& out) const {
-  out << "Name: " << name_ << "Material: " << *material_;
+  out << "Name: " << name_ << " Material: " << *material_;
 }
 
 void shape::translate(double x, double y, double z) {

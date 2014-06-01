@@ -32,11 +32,11 @@ Material::~Material()
 // --- methods ---
 // ---------------
 
-bool Material::operator==(Material rhs) {
+bool Material::operator==(Material const& rhs) {
   return (ka == rhs.ka && kd == rhs.kd && ks == rhs.ks && m == rhs.m);
 }
 
-bool Material::operator!=(Material rhs) {
+bool Material::operator!=(Material const& rhs) {
   return !(*this == rhs);
 }
 

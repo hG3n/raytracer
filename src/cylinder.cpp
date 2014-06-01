@@ -36,7 +36,6 @@ cylinder::~cylinder()
 
 /*virtual*/ bool cylinder::intersect(ray const& r, double& t, HitPoint& hp) const {
 
-#if 0
   double t0, t1;
   math3d::point phit;
 
@@ -94,8 +93,6 @@ cylinder::~cylinder()
       hp.t = t;
   }
   return true; //loeschen wenn fertig!!
-#endif
-  return true;
 }
 
 

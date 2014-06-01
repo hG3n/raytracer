@@ -55,7 +55,6 @@ void Renderer::render() {
 
       if(hitpoint != HitPoint())
         p.color = shade(hitpoint);
-        //p.color = Color(1,1,1);
       else
         p.color = Color(0,0,0);
 
@@ -139,6 +138,6 @@ HitPoint const Renderer::trace_ray(ray const& r) {
 
 Color const Renderer::shade(HitPoint const& hp) const {
   Color phong = ambientlight_ * hp.material.ka;
-  return hp.material.ka;
+  return phong;
 }
 
