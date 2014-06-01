@@ -17,18 +17,24 @@ public : // enums, typedefs
 
   void print (std::ostream& os) const;
 
-  value_t& operator[](unsigned component);
+  value_t&        operator[](unsigned component);
   const value_t&  operator[](unsigned component) const;
 
-  void operator+=(const Color&);
-  void operator=(const Color&);
-  bool operator==(const Color&);
+  void   operator+=(const Color&);
+  void   operator=(const Color&);
+  bool   operator==(const Color&);
+  Color& operator*=(const float);
+  Color& operator*=(const Color&);
 
 private:
   value_t data_[3]; // rgb
 };
 
 Color operator+(const Color& a, const Color& b);
+Color operator*(const Color& rhs, const Color& lhs);
+Color operator*(const Color& rhs, const float lhs);
+Color operator*(const float rhs, const Color& lhs);
+
 std::ostream& operator<<(std::ostream& os, Color const&);
 
 #endif // BUW_RGB_HPP

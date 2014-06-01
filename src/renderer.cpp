@@ -30,9 +30,9 @@ Scene const& Renderer::scene() const {
 
 void Renderer::set_scene(Scene const& scene) {
   scene_ = scene;
-  ambientlight_[0] = 0.0;
-  ambientlight_[1] = 0.0;
-  ambientlight_[2] = 0.0;
+  ambientlight_[0] = 1.0;
+  ambientlight_[1] = 1.0;
+  ambientlight_[2] = 1.0;
 }
 
 void Renderer::set_image(std::string const& file) {
@@ -137,7 +137,17 @@ HitPoint const Renderer::trace_ray(ray const& r) {
 }
 
 Color const Renderer::shade(HitPoint const& hp) const {
+
+  math3d::vector inv_view(-hp.view);
   Color phong = ambientlight_ * hp.material.ka;
+
+  for(auto i : scene_.lights) {
+    math3d::vector lightvec = normalize(i.pos - hp.pos);
+    double n_dot_lightvec = dot(hp.norm,lightvec);
+
+    phong += i.ld *(hp.material.kd * n_dot_lightvec + hp.material.ks) * hp.material.m;
+  }
+
   return phong;
 }
 

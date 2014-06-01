@@ -57,10 +57,40 @@ bool Color::operator==(Color const& rhs) {
   return (data_[0] == rhs[0] && data_[1] == rhs[1] && data_[2] == rhs[2]);
 }
 
+Color& Color::operator*=(Color const& rhs) {
+  data_[0] *= rhs.data_[0];
+  data_[1] *= rhs.data_[1];
+  data_[2] *= rhs.data_[2];
+  return(*this);;
+}
+
+Color& Color::operator*=(float const rhs) {
+  data_[0] *=rhs;
+  data_[1] *=rhs;
+  data_[2] *=rhs;
+  return(*this);
+}
+
+// ------------ //
+// --- free --- //
+// ------------ //
+
 Color operator+(Color const& a, Color const& b) {
   Color result(a);
   result += b;
   return result;
+}
+
+Color operator*(Color const& lhs, Color const& rhs) {
+  return Color(lhs)*=rhs;
+}
+
+Color operator*(Color const& lhs, float const rhs) {
+  return Color(lhs)*= rhs;
+}
+
+Color operator*(float const lhs, Color const& rhs) {
+  return Color(rhs)*=lhs;
 }
 
 std::ostream& operator<<(std::ostream& os, Color const& Color){
