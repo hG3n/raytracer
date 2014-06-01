@@ -1,0 +1,49 @@
+#define material
+
+define material orange 0.2 0.1 0 0.9 0.4 0 0.9 0.9 0.9 50
+define material green 0 0.2 0.1 0 0.8 0.3 0.7 0.7 0.7 70
+define material pink 0.2 0.0 0.1 0.8 0 0.3 0.65 0.65 0.65 60
+define material black 0.1 0.1 0.1 0.1 0.1 0.1 0.8 0.8 0.8 80
+define material white 0.6 0.6 0.6 0.6 0.6 0.6 0.8 0.8 0.8 80
+define material white_c 0.65 0.65 0.65 0.9 0.9 0.9 0 0 0 1
+define material yellow 0.25 0.25 0.0 0.75 0.75 0.0 0.3 0.3 0.0 100
+define material purple 0.1 0.0 0.2 0.325 0.0 0.75 0.15 0.0 0.3 1000 
+
+#define geometry
+
+define shape box left_red_wall -400 -400 -500 -395 400 0 orange
+define shape box right_green_wall 395 -400 -500 400 400 0 green
+define shape box floor -400 -400 -500 400 -395 0 white
+define shape box ceiling -400 395 -500 400 400 0 white_c
+define shape box white_wall_back -400 -400 -501 400 400 -500 yellow
+define shape sphere s1 0.0 0.0 -200.0 100.0 orange
+define shape triangle tri1 -100 0 0 0 100 0 100 0 0 orange
+define shape cylinder cyl -250 -250 -100 50 130 white
+define shape sphere white_b2 -70.0 50.0 0.0 50.0 white
+define shape sphere white_b1 -120.0 -25.0 0.0 65.0 white
+define shape box b1 -200 -200 0 -100 -100 -100 pink
+define shape box b2 100 100 0 200 200 100 green
+
+#define camera
+
+define camera cam 75.0 0.0 0.0 500.0 0.0 0.0 0.0 0.0 1.0 0.0
+
+#define lighting
+
+define light light1 0 390 -250 0.2 0.2 0.2 0.8 0.8 0.8
+//define light white 395 -395 0.2 0.2 0.2 0.0 0.3 0.3 0.3
+//define light red 395 -395 0.2 0.2 0.2 0.0 0.7 0.0 0.0
+//define light green 395 -395 0.2 0.2 0.2 0.0 0.0 0.7 0.0
+define light blue 395 -395 0.2 0.2 0.2 0.0 0.0 0.0 0.7
+//define light light1 0 0 500 0.2 0.2 0.2 0.8 0.8 0.8
+
+#define transformation
+
+transform b1 translate 0 -100 50
+transform b1 scale 2 1 1
+transform b2 translate 0 20 0
+transform white_b1 translate -180 -130 -10
+transform white_b2 translate -220 -150 -10
+transform tri1 translate 300 -300 -100
+//transform s1 scale 2 1 1
+

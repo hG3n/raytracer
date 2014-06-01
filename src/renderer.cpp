@@ -131,16 +131,44 @@ HitPoint const Renderer::trace_ray(ray const& r) {
 
 Color const Renderer::shade(HitPoint const& hp) const {
 
-  math3d::vector inv_view(-hp.view);
-  Color phong = ambientlight_ * hp.material.ka;
+  math3d::vector reflect;
+  math3d::vector inv_view(-hp.view);             // negative viewing direction
+  Color phong = ambientlight_ * hp.material.ka;  // init phong to ambient lighting
 
   for(auto i : scene_.lights) {
-    math3d::vector lightvec = normalize(i.pos - hp.pos);
-    double n_dot_lightvec = dot(hp.norm,lightvec);
 
-    phong += i.ld *(hp.material.kd * n_dot_lightvec + hp.material.ks) * hp.material.m;
+    math3d::vector lightvec = normalize(i.pos - hp.pos); // vector to light
+    double n_dot_lightvec = dot(hp.norm,lightvec);       // normal dot lightvector
+
+    if(n_dot_lightvec > 0.0) {
+      bool in_shadow = false;
+      ray shadowray(hp.pos, lightvec);              // ray for shadow calculation
+      double d = distance(hp.pos, i.pos);
+      in_shadow = intersect_all(shadowray, d);   // obj between hp and lightsource?
+
+      if(!in_shadow) {
+        reflect = normalize((2.0 * n_dot_lightvec * hp.norm) - lightvec);  //reflection vector
+        double reflect_dot_view = dot(reflect, inv_view);
+        phong +=i.ld * (hp.material.kd * n_dot_lightvec + hp.material.ks * pow(reflect_dot_view,hp.material.m));
+
+      }
+
+    }
   }
 
   return phong;
+}
+
+bool Renderer::intersect_all(ray const& r, double d) const {
+  double t;
+  HitPoint hp;
+  ray inv_ray(r);
+  for(auto i : scene_.shapes) {
+    inv_ray.o = i->inv_matrix() * inv_ray.o;
+    inv_ray.dir = i->inv_matrix() * inv_ray.dir;
+    if (i->intersect(inv_ray, t, hp) && t < d)
+      return true;
+  }
+  return false;
 }
 

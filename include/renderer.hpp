@@ -38,6 +38,7 @@ class Renderer {
   private:
     HitPoint const trace_ray(ray const&);
     Color const shade(HitPoint const&) const;
+    bool intersect_all(ray const&, double) const;
 
   private:
     Scene scene_;

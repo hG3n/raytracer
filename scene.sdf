@@ -1,19 +1,21 @@
-define material red    1.0 0.0 0.0  1.0 0.0 0.0  1.0 0.0 0.0  1.0
-define material green  0.0 1.0 0.0  0.0 1.0 0.0  0.0 1.0 0.0  1.0
-define material blue   0.0 0.0 1.0  0.0 0.0 1.0  0.0 0.0 1.0  1.0
-define material grey   0.5 0.5 0.5  0.5 0.5 0.5  0.5 0.5 0.5  1.0
+define material grey       0.4 0.4 0.4  0.5 0.5 0.5  0.8 0.8 0.8  40
+define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  70
+define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  70
+define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  30
+define material darkgrey   0.2 0.2 0.2  0.3 0.3 0.4  0.7 0.7 0.7  54
 
-define shape sphere  sphere_r   5.0   0.0  -20.0  1.0  red
-define shape sphere  sphere_l  -5.0   0.0  -20.0  1.0  red
-define shape sphere  sphere_u   0.0   5.0  -20.0  1.0  blue
-define shape sphere  sphere_b   0.0  -5.0  -20.0  1.0  blue
+define shape box bottom  -150   0 -250   150  -1 150  lightgrey
+define shape box back     150   0  150  -150 300 151  grey
+define shape box left     150   0 -250   151 300 150  blue
+define shape box right   -150   0 -250  -151 300 150  red
+define shape box top     -150 300 -250   150 301 150  grey
+define shape box table    -16   0  -16    16  32  16  darkgrey
 
-define shape box  box_b   -2.0  -2.0 -22.0  2.0  2.0 -24.0 grey
-define shape box  box_m   -1.0  -1.0 -20.0  1.0  1.0 -21.0 green
+define shape sphere s     0 48 0  16 blue
 
-define shape triangle tri_r   4.0  4.0 -20.0   6.0  4.0 -20.0   5.0  6.0 -20.0 grey
-define shape triangle tri_l  -4.0 -4.0 -20.0  -6.0 -4.0 -20.0  -5.0 -6.0 -20.0 grey
+define camera camera  65  0 150 -450  0 80 -1  0 1 0
 
-define camera camera  45.0  0.0 0.0 0.0  0.0 0.0 -1.0  0.0 1.0 0.0
+define light top  0.0 299 0.0  0.2 0.3 1.0  0.7 0.8 1.0
 
-define light light_up  0.0 6.0 -20.0  1.0 1.0 1.0  1.0 1.0 1.0
+
+

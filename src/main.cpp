@@ -20,14 +20,14 @@
   #include <GL/glut.h>
 #endif
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
+
   SDFloader sdf;
   sdf.read("scene.sdf");
 
   // set resolution and checkersize
-  const std::size_t width  = 500;
-  const std::size_t height = 500;
+  const std::size_t width  = 800;
+  const std::size_t height = 600;
 
   // create output window
   glutwindow::init(width, height, 100, 100, "Raytracer", argc, argv);

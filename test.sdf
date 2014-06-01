@@ -1,0 +1,19 @@
+define material red    1.0 0.0 0.0  1.0 0.0 0.0  0.8 0.8 0.8  0.4
+define material green  0.0 1.0 0.0  0.0 1.0 0.0  0.8 0.8 0.8  0.5
+define material blue   0.0 0.0 1.0  0.0 0.0 1.0  0.8 0.8 0.8  0.6
+define material grey   0.5 0.5 0.5  0.5 0.5 0.5  0.5 0.5 0.5  1.0
+
+define shape sphere  sphere_r   5.0   0.0  -20.0  1.0  red
+define shape sphere  sphere_l  -5.0   0.0  -20.0  1.0  red
+define shape sphere  sphere_u   0.0   5.0  -20.0  1.0  blue
+define shape sphere  sphere_b   0.0  -5.0  -20.0  1.0  blue
+
+define shape box  box_b   -2.0  -2.0 -22.0  2.0  2.0 -24.0 grey
+define shape box  box_m   -1.0  -1.0 -20.0  1.0  1.0 -21.0 green
+
+define shape triangle tri_r   4.0  4.0 -20.0   6.0  4.0 -20.0   5.0  6.0 -20.0 grey
+define shape triangle tri_l  -4.0 -4.0 -20.0  -6.0 -4.0 -20.0  -5.0 -6.0 -20.0 grey
+
+define camera camera  45.0  0.0 0.0 0.0  0.0 0.0 -1.0  0.0 1.0 0.0
+
+define light light_up  0.0 6.0 -20.0  1.0 1.0 1.0  1.0 1.0 1.0
