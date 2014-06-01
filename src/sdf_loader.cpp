@@ -28,9 +28,7 @@ void SDFloader::read(std::string file) {
   scene_.materials.clear();
   scene_.shapes.clear();
   scene_.cameras.clear();
-#if 0
   scene_.lights.clear();
-#endif
 
   std::ifstream f;
   std::string s;
@@ -52,10 +50,8 @@ void SDFloader::read(std::string file) {
         add_shape(iss);
       else if(sub == "camera")
         add_camera(iss);
-#if 0
       else if(sub == "light")
         add_light(iss);
-#endif
     }
   }
   f.close();
@@ -109,7 +105,6 @@ void SDFloader::add_shape(std::istringstream& iss) {
                                          name,
                                          &scene_.materials[mat]));
   }
-  /*
   else if(name == "cylinder") {
     double c0,c1,c2,radius,height;
     std::string mat;
@@ -120,7 +115,6 @@ void SDFloader::add_shape(std::istringstream& iss) {
                                          name,
                                          &scene_.materials[mat]));
   }
-  */
 }
 
 void SDFloader::add_camera(std::istringstream& iss) {
@@ -145,12 +139,10 @@ void SDFloader::add_light(std::istringstream& iss) {
   iss >> name >> x >> y >> z >>
          la0 >> la1 >> la2 >>
          ld0 >> ld1 >> ld2;
-#if 0
   scene_.lights.push_back( Light( name,
                                   math3d::point(x,y,z),
                                   Color(la0,la1,la2),
                                   Color(ld0,ld1,ld2)));
-#endif
 }
 
 std::ostream& operator<<(std::ostream& output, SDFloader const& sdf) {

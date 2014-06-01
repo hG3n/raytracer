@@ -7,6 +7,7 @@
 #include <shape.hpp>
 #include <sphere.hpp>
 #include <box.hpp>
+#include <cylinder.hpp>
 #include <material.hpp>
 #include <light.hpp>
 
@@ -54,6 +55,7 @@ void Renderer::render() {
 
       if(hitpoint != HitPoint())
         p.color = shade(hitpoint);
+        //p.color = Color(1,1,1);
       else
         p.color = Color(0,0,0);
 
@@ -80,18 +82,25 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   double t     = t_min;
   bool   hit   = false;
 
-#if 0  //for debugging purposes
+#if 0
   scene_.shapes.clear();
   Material m;
-  sphere s(point(0,0,0), 1.0, "horst", &m);
+  sphere s(math3d::point(0,0,0), 1.0, "horst", &m);
   scene_.shapes.push_back(&s);
 #endif
 
-#if 0 //for debugging purposes
+#if 0
   scene_.shapes.clear();
   Material m;
-  box b(point(0,0,0), point(1,1,1), "uwe", &m);
+  box b(math3d::point(0,0,0), point(1,1,1), "uwe", &m);
   scene_.shapes.push_back(&b);
+#endif
+
+#if 0
+  scene_.shapes.clear();
+  Material m;
+  cylinder c(math3d::point(0,0,0), 1.0, 1.0, "peter", &m);
+  scene_.shapes.push_back(&c);
 #endif
 
   // compute color for pixel

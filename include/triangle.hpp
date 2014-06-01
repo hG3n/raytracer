@@ -6,13 +6,12 @@
 #include <point.hpp>
 #include <shape.hpp>
 
-using namespace math3d;
 
 class triangle: public shape{
     public:
         triangle();
-        triangle(point const&, point const&, point const&, std::string const&, Material*);
-        triangle(point const&, point const&, point const&);
+        triangle(math3d::point const&, math3d::point const&, math3d::point const&, std::string const&, Material*);
+        triangle(math3d::point const&, math3d::point const&, math3d::point const&);
         triangle(triangle const&);
         ~triangle();
 
@@ -27,12 +26,12 @@ class triangle: public shape{
         double AC() const;
         double BC() const;
         double area() const;
-        //bool is_inside(point const&) const;
+        bool is_inside(math3d::point const&) const;
 
     private:
-        point A_;
-        point B_;
-        point C_;
+        math3d::point A_;
+        math3d::point B_;
+        math3d::point C_;
         std::string name_;
 
 };

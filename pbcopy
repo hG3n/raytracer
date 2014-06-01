@@ -1,35 +1,13 @@
-rm -f src/glutwindow.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/glutwindow.o src/glutwindow.cpp
-rm -f src/pixel.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/pixel.o src/pixel.cpp
-rm -f src/ppmwriter.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/ppmwriter.o src/ppmwriter.cpp
-rm -f src/color.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/color.o src/color.cpp
-rm -f src/point.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/point.o src/point.cpp
-rm -f src/vector.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/vector.o src/vector.cpp
-rm -f src/matrix.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/matrix.o src/matrix.cpp
-rm -f src/shape.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/shape.o src/shape.cpp
-rm -f src/box.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/box.o src/box.cpp
-rm -f src/sphere.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/sphere.o src/sphere.cpp
-rm -f src/triangle.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/triangle.o src/triangle.cpp
-rm -f src/material.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/material.o src/material.cpp
-rm -f src/scene.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/scene.o src/scene.cpp
-rm -f src/camera.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/camera.o src/camera.cpp
-rm -f src/sdf_loader.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/sdf_loader.o src/sdf_loader.cpp
-rm -f src/renderer.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/renderer.o src/renderer.cpp
-rm -f src/main.o
-g++-4.9 -std=c++11 -fdiagnostics-color=always -g -O1 -fPIC -W -Wall -m64 -I. -I./include -I/opt/local/include  -c -o src/main.o src/main.cpp
-g++-4.9 -std=c++11 -fdiagnostics-color=always -o ./main src/glutwindow.o src/pixel.o src/ppmwriter.o src/color.o src/point.o src/vector.o src/matrix.o src/shape.o src/box.o src/sphere.o src/triangle.o src/material.o src/scene.o src/camera.o src/sdf_loader.o src/renderer.o src/main.o  -framework OpenGL -framework GLUT -L./ -Wl,-rpath,. -L/opt/local/lib -g -O1 -fPIC -W -Wall -m64 -L. -fPIC -Wl,-rpath,.
+Makefile
+README
+defines.mk
+glut32
+include
+main
+pbcopy
+raytracer.ppm
+raytracer.sublime-workspace
+rules.mk
+scene.sdf
+src
+sublime_files

@@ -132,9 +132,8 @@ box::~box()
 
     return true;
   }
-  else {
+  else 
     return false;
-  }
 }
 
 void box::print_on(std::ostream& output) const {
