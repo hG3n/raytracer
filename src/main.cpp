@@ -20,6 +20,32 @@
   #include <GL/glut.h>
 #endif
 
+class application {
+  public:
+    void run() {
+      Renderer renderer;
+
+      SDFloader sdf;
+      sdf.read("scene.sdf");
+
+      renderer.set_scene(sdf.scene());
+      renderer.render();
+    }
+
+    void animate() {
+      std::string file;
+      std::ostringstream convert;
+
+      Renderer renderer;
+      SDFloader sdf;
+      std::string transform;
+
+    }
+
+  private:
+};
+
+
 int main(int argc, char* argv[]) {
 
   SDFloader sdf;

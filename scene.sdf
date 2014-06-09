@@ -1,21 +1,23 @@
-define material grey       0.4 0.4 0.4  0.5 0.5 0.5  0.8 0.8 0.8  40
-define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  70
-define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  70
-define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  30
+define material grey       0.4 0.4 0.4  0.5 0.5 0.5  0.8 0.8 0.8  200
+define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  10
+define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  10
+define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  10
 define material darkgrey   0.2 0.2 0.2  0.3 0.3 0.4  0.7 0.7 0.7  54
+define material lightblue  0.3 0.3 0.7  0.4 0.4 0.8  0.9 0.9 0.9  60
 
 define shape box bottom  -150   0 -250   150  -1 150  lightgrey
 define shape box back     150   0  150  -150 300 151  grey
 define shape box left     150   0 -250   151 300 150  blue
 define shape box right   -150   0 -250  -151 300 150  red
 define shape box top     -150 300 -250   150 301 150  grey
-define shape box table    -16   0  -16    16  32  16  darkgrey
 
-define shape sphere s     0 48 0  16 blue
+define shape sphere sr  -50 10   90 20 lightblue
+define shape box table    -32   0  -32    32  64  32  darkgrey
+
+define shape sphere sl   70 15 -100 30 blue
 
 define camera camera  65  0 150 -450  0 80 -1  0 1 0
 
-define light top  0.0 299 0.0  0.2 0.3 1.0  0.7 0.8 1.0
-
-
-
+define light sun      0 299    0  0.97 0.91 0.35  1.0  0.98 0.7
+#define light top   -60 299 -100  0.97 0.88 0.32  0.92 0.91 0.30
+define light back     0 350  100  0.3  0.3  0.3   0.5  0.5  0.4

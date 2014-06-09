@@ -53,8 +53,14 @@ void SDFloader::read(std::string file) {
       else if(sub == "light")
         add_light(iss);
     }
+    else if(sub == "transform")
+      add_transformation(iss);
   }
   f.close();
+}
+
+float SDFloader::cvrt(int const& c) {
+  return c / 255;
 }
 
 void SDFloader::add_material(std::istringstream& iss) {
@@ -143,6 +149,44 @@ void SDFloader::add_light(std::istringstream& iss) {
                                   math3d::point(x,y,z),
                                   Color(la0,la1,la2),
                                   Color(ld0,ld1,ld2)));
+}
+
+void SDFloader::add_transformation(std::istringstream& iss) {
+
+  std::string name, transformation_type;
+  iss >> name >> transformation_type;
+
+  if(transformation_type == "rotate") {
+    double angle,x,y,z;
+    iss >> angle >> x >> y >> z;
+
+    for(auto i : scene_.shapes) {
+      if (i->name() == name) {
+        if(x > 0)
+          i->rotate_x(angle);
+        if(y > 0)
+          i->rotate_y(angle);
+        if(z > 0)
+          i->rotate_z(angle);
+      }
+    }
+  }
+  else if (transformation_type == "translate") {
+    double x,y,z;
+    iss >> x >> y >> z;
+    for(auto i : scene_.shapes) {
+      if(i->name() == name)
+        i->translate(x,y,z);
+    }
+  }
+  else if (transformation_type == "scale") {
+    double x,y,z;
+    iss >> x >> y >> z;
+    for(auto i: scene_.shapes){
+      if(i->name() == name)
+        i->scale(x,y,z);
+    }
+  }
 }
 
 std::ostream& operator<<(std::ostream& output, SDFloader const& sdf) {
