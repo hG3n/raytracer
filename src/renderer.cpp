@@ -5,11 +5,8 @@
 #include <camera.hpp>
 #include <hitpoint.hpp>
 #include <shape.hpp>
-#include <sphere.hpp>
-#include <box.hpp>
-#include <cylinder.hpp>
 #include <material.hpp>
-#include <light.hpp>
+#include <omp.h>
 
 Renderer::Renderer():
   scene_(),
@@ -44,6 +41,8 @@ void Renderer::render() {
 
   Camera camera = scene_.cameras.front();
   HitPoint hitpoint;
+
+  #pragma omp parallel for collapse(2)
   for (std::size_t y = window_.height() - 1; y > 0; --y) {
     for (std::size_t x = 0; x < window_.width(); ++x) {
       Pixel p(x, y);
@@ -80,20 +79,6 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   double t_min = 5000000;
   double t     = t_min;
   bool   hit   = false;
-
-#if 0
-  scene_.shapes.clear();
-  Material m;
-  sphere s(math3d::point(0,0,0), 1.0, "horst", &m);
-  scene_.shapes.push_back(&s);
-#endif
-
-#if 0
-  scene_.shapes.clear();
-  Material m;
-  box b(math3d::point(0,0,0), point(1,1,1), "uwe", &m);
-  scene_.shapes.push_back(&b);
-#endif
 
   // compute color for pixel
   for(auto i : scene_.shapes) {

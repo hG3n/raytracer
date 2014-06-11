@@ -3,6 +3,8 @@
 #include <pixel.hpp>
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <cmath>
 
 #include <thread>
@@ -10,7 +12,8 @@
 
 #include <vector.hpp>
 #include <matrix.hpp>
-#include <point.hpp>
+
+#include <omp.h>
 
 #include "renderer.hpp"
 #include "sdf_loader.hpp"
@@ -40,6 +43,44 @@ class application {
       SDFloader sdf;
       std::string transform;
 
+      #pragma omp parallel for
+      for(int i = 0; i < 80; ++i){
+
+        convert.str("");
+        convert << i;
+
+        file = convert.str();
+
+        //create file
+        std::ofstream out(file.c_str());
+        std::ofstream myfile;
+
+        //start writing
+        transform = "transform sphere translate  0 " + std::to_string(i) + " 0";
+
+        myfile.open(file);
+        myfile << "define material black 0.1 0.1 0.1 0.1 0.1 0.1 0.8 0.8 0.8 80\n"
+        << "define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  10\n"
+        << "define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  10\n"
+        << "define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  10\n"
+        << "define shape box bottom  -150   0 -250   150  -1 150  lightgrey\n"
+        << "define shape box back     150   0  150  -150 300 151  lightgrey\n"
+        << "define shape box left     150   0 -250   151 300 150  blue\n"
+        << "define shape box right   -150   0 -250  -151 300 150  red\n"
+        << "define shape box top     -150 300 -250   150 301 150  black\n"
+        << "define shape sphere sphere    0 15 0  blue\n"
+        << "define camera camera  65  0 150 -450  0 80 -1  0 1 0\n"
+        << "define light sun      0 299    0  0.97 0.91 0.35  1.0  0.98 0.7\n"
+        << transform;
+        myfile.close();
+
+        sdf.read(file);
+
+        renderer.set_scene(sdf.scene());
+        renderer.set_image(file);
+        renderer.render();
+        std::cout << i << std::endl;
+      }
     }
 
   private:
@@ -59,20 +100,21 @@ int main(int argc, char* argv[]) {
   glutwindow::init(width, height, 100, 100, "Raytracer", argc, argv);
 
   // create a ray tracing Renderer
-  Renderer app /* (scene) */;
-  app.set_scene(sdf.scene());
+  //Renderer app /* (scene) */;
+  //app.set_scene(sdf.scene());
 
-  std::cout << app.scene() << std::endl;
+  application app;
+  app.animate();
+
   // start computation in thread
-  std::thread thr(std::bind(&Renderer::render, &app));
+  //std::thread thr(std::bind(&Renderer::render, &app));
+  std::thread thr(std::bind(&application::run, & app));
 
   // start output on glutwindow
   glutwindow::instance().run();
 
   // wait on thread
   thr.join();
-
-  //example_math3d();
 
   return 0;
 }

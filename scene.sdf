@@ -11,6 +11,8 @@ define shape box left     150   0 -250   151 300 150  blue
 define shape box right   -150   0 -250  -151 300 150  red
 define shape box top     -150 300 -250   150 301 150  grey
 
+define shape box edge    -30   0   -30    30  60   30  blue
+
 define shape sphere sr  -50 10   90 20 lightblue
 define shape box table    -32   0  -32    32  64  32  darkgrey
 
