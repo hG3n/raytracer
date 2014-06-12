@@ -41,7 +41,6 @@ class application {
       SDFloader sdf;
       std::string transform;
 
-      #pragma omp parallel for
  //     for(int i = 0; i < 80; ++i) {
       for(int i = 80; i < 251; ++i) {
         convert.str("");
@@ -101,15 +100,15 @@ int main(int argc, char* argv[]) {
   glutwindow::init(width, height, 100, 100, "Raytracer", argc, argv);
 
   // create a ray tracing Renderer
-  //Renderer app /* (scene) */;
-  //app.set_scene(sdf.scene());
+  Renderer app /* (scene) */;
+  app.set_scene(sdf.scene());
 
-  application app;
-  app.animate();
+  //application app;
+  //app.animate();
 
   // start computation in thread
-  //std::thread thr(std::bind(&Renderer::render, &app));
-  std::thread thr(std::bind(&application::run, & app));
+  std::thread thr(std::bind(&Renderer::render, &app));
+  //std::thread thr(std::bind(&application::run, & app));
 
   // start output on glutwindow
   glutwindow::instance().run();

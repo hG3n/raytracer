@@ -8,7 +8,7 @@ prefix =.
 
 include $(prefix)/defines.mk
 
-CXX = g++-4.9 -std=c++11 -fdiagnostics-color=always
+CXX = g++-4.9 -std=c++11 -fdiagnostics-color=always -fopenmp
 
 CXXINCLUDE	+=-I$(prefix)/include -I/opt/local/include
 ifeq ($(UNAME), Darwin)

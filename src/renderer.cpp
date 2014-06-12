@@ -6,7 +6,6 @@
 #include <hitpoint.hpp>
 #include <shape.hpp>
 #include <material.hpp>
-#include <omp.h>
 
 Renderer::Renderer():
   scene_(),
@@ -42,7 +41,6 @@ void Renderer::render() {
   Camera camera = scene_.cameras.front();
   HitPoint hitpoint;
 
-  #pragma omp parallel for collapse(2)
   for (std::size_t y = window_.height() - 1; y > 0; --y) {
     for (std::size_t x = 0; x < window_.width(); ++x) {
       Pixel p(x, y);
