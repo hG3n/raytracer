@@ -13,8 +13,6 @@
 #include <vector.hpp>
 #include <matrix.hpp>
 
-#include <omp.h>
-
 #include "renderer.hpp"
 #include "sdf_loader.hpp"
 #ifdef __APPLE__
@@ -44,8 +42,8 @@ class application {
       std::string transform;
 
       #pragma omp parallel for
-      for(int i = 0; i < 80; ++i){
-
+ //     for(int i = 0; i < 80; ++i) {
+      for(int i = 80; i < 251; ++i) {
         convert.str("");
         convert << i;
 
@@ -56,22 +54,25 @@ class application {
         std::ofstream myfile;
 
         //start writing
-        transform = "transform sphere translate  0 " + std::to_string(i) + " 0";
+ //       transform = "define shape sphere s 0 " + std::to_string(i+20) + " 0  20 lightblue\n";
+        transform = "define shape sphere sphere 0 99 " + std::to_string(80-(i+3)) + " 20 lightblue\n";
 
         myfile.open(file);
         myfile << "define material black 0.1 0.1 0.1 0.1 0.1 0.1 0.8 0.8 0.8 80\n"
-        << "define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  10\n"
-        << "define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  10\n"
-        << "define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  10\n"
+        << "define material grey       0.4 0.4 0.4  0.5 0.5 0.5  0.8 0.8 0.8  200\n"
+        << "define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  100\n"
+        << "define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  100\n"
+        << "define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  100\n"
+        << "define material darkgrey   0.2 0.2 0.2  0.3 0.3 0.4  0.7 0.7 0.7  540\n"
+        << "define material lightblue  0.3 0.3 0.7  0.4 0.4 0.8  0.9 0.9 0.9  600\n"
         << "define shape box bottom  -150   0 -250   150  -1 150  lightgrey\n"
-        << "define shape box back     150   0  150  -150 300 151  lightgrey\n"
+        << "define shape box back     150   0  150  -150 300 151  grey\n"
         << "define shape box left     150   0 -250   151 300 150  blue\n"
         << "define shape box right   -150   0 -250  -151 300 150  red\n"
-        << "define shape box top     -150 300 -250   150 301 150  black\n"
-        << "define shape sphere sphere    0 15 0  blue\n"
+        << "define shape box top     -150 300 -250   150 301 150  grey\n"
+        << transform
         << "define camera camera  65  0 150 -450  0 80 -1  0 1 0\n"
-        << "define light sun      0 299    0  0.97 0.91 0.35  1.0  0.98 0.7\n"
-        << transform;
+        << "define light sun      0 299    0  0.97 0.91 0.35  1.0  0.98 0.7\n";
         myfile.close();
 
         sdf.read(file);

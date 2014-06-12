@@ -1,0 +1,12 @@
+define material black 0.1 0.1 0.1 0.1 0.1 0.1 0.8 0.8 0.8 80
+define material lightgrey  0.8 0.8 0.8  0.9 0.9 0.9  0.9 0.9 0.9  10
+define material red        0.7 0.1 0.1  0.8 0.2 0.2  0.6 0.2 0.2  10
+define material blue       0.1 0.1 0.6  0.1 0.1 0.6  0.3 0.3 0.5  10
+define shape box bottom  -150   0 -250   150  -1 150  lightgrey
+define shape box back     150   0  150  -150 300 151  lightgrey
+define shape box left     150   0 -250   151 300 150  blue
+define shape box right   -150   0 -250  -151 300 150  red
+define shape box top     -150 300 -250   150 301 150  black
+define shape sphere sphere 0 21 0 20
+define camera camera  65  0 150 -450  0 80 -1  0 1 0
+define light sun      0 299    0  0.97 0.91 0.35  1.0  0.98 0.7
