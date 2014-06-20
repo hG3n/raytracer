@@ -32,7 +32,7 @@ void Renderer::set_scene(Scene const& scene) {
 }
 
 void Renderer::set_image(std::string const& file) {
-  std::string name = "./" + file + ".ppm";
+  std::string name = "images/" + file + ".ppm";
   image_ = ppmwriter(window_.width(), window_.height(), name);
 }
 
@@ -46,7 +46,6 @@ void Renderer::render() {
       Pixel p(x, y);
 
       ray r = camera.compute_eye_ray(window_.width(), window_.height(), x , y);
-      //ray r = ray(math3d::point(float(x)/float(window_.width()),float(y)/float(window_.height()),0), math3d::vector(0,0,-1));
 
       hitpoint = trace_ray(r);
 
@@ -75,7 +74,7 @@ HitPoint const Renderer::trace_ray(ray const& r) {
   Material       material;
 
   double t_min = 5000000;
-  double t     = t_min;
+  double t     = 0;
   bool   hit   = false;
 
   // compute color for pixel
@@ -132,7 +131,7 @@ Color const Renderer::shade(HitPoint const& hp) const {
       if(!in_shadow) {
         reflect = normalize((2.0 * n_dot_lightvec * hp.norm) - lightvec);  //reflection vector
         double reflect_dot_view = dot(reflect, inv_view);
-        phong +=i.ld * (hp.material.kd * n_dot_lightvec + hp.material.ks * pow(reflect_dot_view,hp.material.m));
+        phong += i.ld * (hp.material.kd * n_dot_lightvec + hp.material.ks * pow(reflect_dot_view,hp.material.m));
 
       }
 

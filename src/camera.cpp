@@ -42,7 +42,8 @@ ray const Camera::compute_eye_ray(double width, double height, double x, double 
   math3d::vector u = normalize(cross(up_,w));
   math3d::vector v = normalize(cross(w,u));
 
-  double distance = (0.5 * width) / tan(0.5 * (alpha_ * M_PI / 180)); //distance of cam to view plane
+  //distance of cam to view plane
+  double distance = (0.5 * width) / tan(0.5 * (alpha_ * M_PI / 180)); 
   math3d::vector cam_dir = distance * w; //camera view direction
 
   math3d::point center_viewPlane = pos_ - cam_dir;
